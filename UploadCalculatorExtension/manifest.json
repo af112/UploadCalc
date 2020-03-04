@@ -1,0 +1,11 @@
+{
+	"name": "Upload Calculator",
+	"version": "1.0",
+	"description": "Upload stuff and calculate how long it'll take!",
+	"permissions": ["storage"],
+	"background": {
+		"scripts": ["background.js"],
+		"persistent": false
+	},
+	"manifest_version": 2
+}
