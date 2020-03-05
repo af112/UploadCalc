@@ -13,7 +13,7 @@
         <option value="mb">MB</option>
         <option value="gb">GB</option>
       </select>
-      <input type="text" id="fileSize" name="fileSize" onchange="checkFileSize();">
+      <input type="text" id="fileSize" name="fileSize">
     </div>
     <div id="bottomRow">
       <label id="uploadSpeedLabel" for="uploadSpeed">Enter Upload Speed:</label>
@@ -21,7 +21,7 @@
         <option value="mbit">mBits/s</option>
         <option value="mbyte">mBytes/s</option>
       </select>
-      <input type="text" id="uploadSpeed" name="uploadSpeed" onchange="checkUploadSpeed();">
+      <input type="text" id="uploadSpeed" name="uploadSpeed">
     </div>
     <div id="resultRow">
       <label id="uploadTimeLabel">Estimated Upload Time:</label>
@@ -31,6 +31,7 @@
       <label id="copyrightLabel">&copy; Hank LTD</label>
     </div>
   </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="popup.js"></script>
 </body>
 

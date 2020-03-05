@@ -1,27 +1,21 @@
-function checkUploadSpeed() {
-    let uploadSpeed = document.getElementById('uploadSpeed');
-    let uploadSpeedVal = parseFloat(uploadSpeed.value); // Attempt to convert the upload speed value to a float
+function checkElement(element) {
+    let elmnt = document.getElementById(element);
+    let elementVal = parseFloat(elmnt.value);  // Attempt to convert the element value to a float
 
-    if(isNaN(uploadSpeedVal)) {    // Check if the value isn't a number
-        uploadSpeed.style.borderColor = "red";    // Make the borer color red
-        uploadSpeed.value = null; // Clear the element value
-        console.log("Upload speed is invalid.");
+    if(isNaN(elementVal)) {    // Check if the value isn't a number
+        elmnt.style.borderColor = "red";    // Make the borer color red
+        elmnt.value = null; // Clear the element value
+        console.log(element + " is invalid.");
     } else {
-        uploadSpeed.style.borderColor = "black";  // Make the border color black
-        console.log("Upload speed is valid.");
+        elmnt.style.borderColor = "black";  // Make the border color black
+        console.log(element + " is valid.");
     }
 }
 
-function checkFileSize() {
-    let fileSize = document.getElementById('fileSize');
-    let fileSizeVal = parseFloat(fileSize.value);   // Attempt to convert the file size value to a float
+$('#fileSize').on('input', function() {
+    checkElement('fileSize');
+});
 
-    if(isNaN(fileSizeVal)) {    // Check if the value isn't a number
-        fileSize.style.borderColor = "red";    // Make the borer color red
-        fileSize.value = null; // Clear the element value
-        console.log("File size is invalid.");
-    } else {
-        fileSize.style.borderColor = "black";  // Make the border color black
-        console.log("File size is valid.");
-    }
-}
+$('#uploadSpeed').on('input', function() {
+    checkElement('uploadSpeed');
+});
