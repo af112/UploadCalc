@@ -3,14 +3,39 @@
     <head>
         <style>
             button {
-                height: 30px;
-                width: 30px;
+                height: 48px;
+                width: 100px;
                 outline: none;
+                margin: 8px;
+            }
+            label {
+                height: 48px;
+                width: 100px;
+                outline: none;
+                margin: 8px;
+            }
+            textarea {
+                height: 48;
+                width: 100px;
+                outline: none;
+                margin: 8px;
             }
         </style>
     </head>
     <body>
-        <button id="changeColor"></button>
+        <label for="fileSizeOptions">File Size:</label>
+        <select id="fileSizeOptions">
+            <option value="MB">MB</option>
+            <option value="GB">GB</option>
+        </select>
+        <textarea id="fileSize"></textarea>
+        <label id="uploadSpeedLabel">Upload Speed:</label>
+        <select id="uploadSpeedOptions">
+            <option value="MB">MB</option>
+            <option value="GB">GB</option>
+        </select>
+        <textarea id="uploadSpeed"></textarea>
+        <button id="calculateButton">Calculate Upload Time</button>
         <script src="popup.js"></script>
     </body>
 </html>

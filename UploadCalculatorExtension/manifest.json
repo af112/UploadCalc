@@ -2,12 +2,11 @@
 	"name": "Upload Calculator",
 	"version": "1.0",
 	"description": "Upload stuff and calculate how long it'll take!",
-	"permissions": ["activeTab", "declarativeContent", "storage"],
+	"permissions": ["activeTab", "declarativeContent"],
 	"background": {
 		"scripts": ["background.js"],
 		"persistent": false
 	},
-	"options_page": "options.html",
 	"page_action": {
 		"default_popup": "popup.html",
 		"default_icon": {
