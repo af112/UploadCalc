@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            button {
-                height: 48px;
-                width: 100px;
-                outline: none;
-                margin: 8px;
-            }
-            label {
-                height: 48px;
-                width: 100px;
-                outline: none;
-                margin: 8px;
-            }
-            textarea {
-                height: 48;
-                width: 100px;
-                outline: none;
-                margin: 8px;
-            }
-        </style>
-    </head>
-    <body>
-        <label for="fileSizeOptions">File Size:</label>
-        <select id="fileSizeOptions">
-            <option value="MB">MB</option>
-            <option value="GB">GB</option>
-        </select>
-        <textarea id="fileSize"></textarea>
-        <label id="uploadSpeedLabel">Upload Speed:</label>
-        <select id="uploadSpeedOptions">
-            <option value="MB">MB</option>
-            <option value="GB">GB</option>
-        </select>
-        <textarea id="uploadSpeed"></textarea>
-        <button id="calculateButton">Calculate Upload Time</button>
-        <script src="popup.js"></script>
-    </body>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+
+<body>
+  <div id="mainContent">
+    <div id="topRow">
+      <label id="fileSizeLabel" for="fileSize">Enter Filesize:</label>
+      <select id="sizeDropDown">
+        <option value="mb">MB</option>
+        <option value="gb">GB</option>
+      </select>
+      <input type="text" id="fileSize" name="fileSize">
+    </div>
+    <div id="bottomRow">
+      <label id="uploadSpeedLabel" for="uploadSpeed">Enter Upload Speed:</label>
+      <select id="speedDropDown">
+        <option value="mbit">mBits/s</option>
+        <option value="mbyte">mBytes/s</option>
+      </select>
+      <input type="text" id="uploadSpeed" name="uploadSpeed">
+    </div>
+    <div id="resultRow">
+      <label id="uploadTimeLabel">Estimated Upload Time:</label>
+      <label id="uploadTime">xxxxx</label>
+    </div>
+    <div id="copyrightRow">
+      <label id="copyrightLabel">&copy; Hank LTD</label>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
 </html>
