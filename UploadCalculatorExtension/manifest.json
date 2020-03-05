@@ -2,13 +2,7 @@
 	"name": "Upload Calculator",
 	"version": "1.0",
 	"description": "Upload stuff and calculate how long it'll take!",
-	"permissions": [
-		"declarativeContent",
-		"storage",
-		"activeTab"
-	],
-	
-	"options_page": "options.html",
+	"permissions": ["activeTab", "declarativeContent"],
 	"background": {
 		"scripts": [
 			"background.js"
