@@ -1,26 +1,27 @@
-/* let fileSize = document.getElementById('fileSize');
-let uploadSpeed = document.getElementById('uploadSpeed'); */
-let calculateButton = document.getElementById('calculateButton');
+function checkUploadSpeed() {
+    let uploadSpeed = document.getElementById('uploadSpeed');
+    let uploadSpeedVal = parseFloat(uploadSpeed.value); // Attempt to convert the upload speed value to a float
 
-calculateButton.onclick = function(element) {
-    checkValid("fileSize"); // Check the validity of the file size element
-    checkValid("uploadSpeed");  // Check the validity of the upload speed element
-
-    /*
-    let isValid = true;
-
-    if(isValid == true) {
-        console.log("Both values are valid!");
-    } */
-};
-
-function checkValid(element) {
-    let elmnt = document.getElementById(element);    // Get the HTML element
-    let val = parseFloat(elmnt.value);  // Attempt to convert the element value to a float
-    if(isNaN(val)) {    // Check if the value isn't a number
-        elmnt.style.borderColor = "red";    // Make the borer color red
-        elmnt.value = null; // Clear the element value
+    if(isNaN(uploadSpeedVal)) {    // Check if the value isn't a number
+        uploadSpeed.style.borderColor = "red";    // Make the borer color red
+        uploadSpeed.value = null; // Clear the element value
+        console.log("Upload speed is invalid.");
     } else {
-        elmnt.style.borderColor = "black";  // Make the border color black
+        uploadSpeed.style.borderColor = "black";  // Make the border color black
+        console.log("Upload speed is valid.");
+    }
+}
+
+function checkFileSize() {
+    let fileSize = document.getElementById('fileSize');
+    let fileSizeVal = parseFloat(fileSize.value);   // Attempt to convert the file size value to a float
+
+    if(isNaN(fileSizeVal)) {    // Check if the value isn't a number
+        fileSize.style.borderColor = "red";    // Make the borer color red
+        fileSize.value = null; // Clear the element value
+        console.log("File size is invalid.");
+    } else {
+        fileSize.style.borderColor = "black";  // Make the border color black
+        console.log("File size is valid.");
     }
 }
