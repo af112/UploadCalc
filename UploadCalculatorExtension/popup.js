@@ -6,10 +6,10 @@ function checkElement(element) {
     let elementVal = parseFloat(elmnt.value);  // Attempt to convert the element value to a float
 
     if(isNaN(elementVal) || elementVal < 0) {  // Check if the value isn't a number and that it isn't negative
-        elmnt.style.borderColor = 'red';    // Make the borer color red
+        elmnt.style.boxShadow = '0px 0px 3px 1.35px red inset';    // Make the borer color red
         elmnt.value = null; // Clear the element value
     } else {
-        elmnt.style.borderColor = 'black';  // Make the border color black
+        elmnt.style.boxShadow = '0px 0px 0px 0px red inset';  // Make the border color black
         calculateTime(parseFloat(fileSize.value), parseFloat(uploadSpeed.value));   // Calculate the time to upload
     }
 }
