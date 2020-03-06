@@ -6,10 +6,10 @@ function checkElement(element) {
     let elementVal = parseFloat(elmnt.value);  // Attempt to convert the element value to a float
 
     if(isNaN(elementVal) || elementVal < 0) {  // Check if the value isn't a number and that it isn't negative
-        elmnt.style.boxShadow = '0px 0px 3px 1.35px red inset';    // Make the borer color red
+        elmnt.style.boxShadow = '0px 0px 3px 1.35px red inset'; // Make the borer color red
         elmnt.value = null; // Clear the element value
     } else {
-        elmnt.style.boxShadow = '0px 0px 0px 0px red inset';  // Make the border color black
+        elmnt.style.boxShadow = '0px 0px 0px 0px black inset';  // Make the border color black
         calculateTime(parseFloat(fileSize.value), parseFloat(uploadSpeed.value));   // Calculate the time to upload
     }
 }
@@ -20,29 +20,27 @@ function calculateTime(size, speed) {
             let sizeDropDown = document.getElementById('sizeDropDown');
             let speedDropDown = document.getElementById('speedDropDown');
             let time = 0;
+            let multiplier = 0;
+
+            switch(speedDropDown.value) {
+                case 'Mb':
+                    multiplier = 8;  // Mb multiplier
+                    break;
+                case 'MB':
+                    multiplier = 1;  // MB multiplier
+                    break;
+            }
 
             switch(sizeDropDown.value) {
                 case 'MB':
-                    switch(speedDropDown.value) {
-                        case 'Mb':
-                            time = (size * 8) / speed;  // MB @ Mb/s formula
-                            break;
-                        case 'MB':
-                            time = size / speed;    // MB @ MB/s formula
-                            break;
-                    }
+                    multiplier *= 1;
                     break;
                 case 'GB':
-                    switch(speedDropDown.value) {
-                        case 'Mb':
-                            time = (size * 8000) / speed;   // GB @ Mb/s formula
-                            break;
-                        case 'MB':
-                            time = (size * 1000) / speed;   // GB @ MB/s formula
-                            break;
-                    }
+                    multiplier *= 1000;
                     break;
             }
+
+            time = (size * multiplier) / speed;
             if(time == 'Infinity') {
                 time = 0;
             }
