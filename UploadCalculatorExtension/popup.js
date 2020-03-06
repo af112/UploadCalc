@@ -44,12 +44,63 @@ function calculateTime(size, speed) {
             if(time == 'Infinity') {
                 time = 0;
             }
-            console.log(time + ' Seconds.');
-            $('#uploadTime').text(time.toFixed(2).toString() + ' seconds');
+            displayTime(time.toFixed(2));  // Format & display the time
         }
     } else {    // If the fields don't have valid values
         return; // Leave this function
     }
+}
+
+function displayTime(time) {
+    let dateTime = new Date(time * 1000);   // Create date object from time in milliseconds (seconds * 1000)
+    let hours = dateTime.getUTCHours(); // Get the hours
+    let minutes = dateTime.getUTCMinutes(); // Get the minutes
+    let seconds = dateTime.getUTCSeconds(); // Get the seconds
+    let formattedTime = '';
+
+    if(hours > 0) { // If the time is over 1 hour
+        let hrs = '';
+        let mins = '';
+
+        if (hours == 1) {
+            hrs = 'hr';
+        } else {
+            hrs = 'hrs';
+        }
+
+        if (minutes == 1) {
+            mins = 'min';
+        } else {
+            mins = 'mins';
+        }
+        formattedTime = hours.toString() + ' ' + hrs.toString() + ' ' + minutes.toString() + ' ' + mins.toString(); // Format as hh:mm
+    } else if(minutes > 0) {    // If the time is less than 1 hour but over 1 minute
+        let mins = '';
+        let secs = '';
+
+        if (minutes == 1) {
+            mins = 'min';
+        } else {
+            mins = 'mins';
+        }
+
+        if (seconds == 1) {
+            secs = 'sec';
+        } else {
+            secs = 'secs';
+        }
+        formattedTime = minutes.toString() + ' ' + mins.toString() + ' ' + seconds.toString() + ' ' + secs.toString();  // Format as mm:ss
+    } else {    // If the time is less than 1 minute
+        let secs = '';
+
+        if (seconds == 1) {
+            secs = 'sec';
+        } else {
+            secs = 'secs';
+        }
+        formattedTime = seconds.toString() + ' ' + secs.toString(); // Format as ss
+    }
+    $('#uploadTime').text(formattedTime); // Display the time
 }
 
 $('#sizeDropDown').on('change', function() {    // When the size drop down is changed
