@@ -3,7 +3,19 @@ let uploadSpeed = document.getElementById('uploadSpeed');
 
 function checkElement(element) {
     let elmnt = document.getElementById(element);
-    let elementVal = parseFloat(elmnt.value);  // Attempt to convert the element value to a float
+    let val = elmnt.value;
+
+    if(val.toString().match("[a-zA-Z]+")) { // Check if the newest input is a letter
+        val = val.toString().slice(0, -1);  // Remove the last added input (the letter)
+        elmnt.value = val;  // Update the input field
+    }
+    
+    if(((val.toString().match(/\./g) || []).length) > 1) {  // Check how many decimal points have been added
+        val = val.toString().slice(0, -1);  // Remove the last added input (the decimal point)
+        elmnt.value = val;  // Update the input field
+    }
+
+    let elementVal = parseFloat(val);   // Attempt to convert the element value to a float
 
     if(isNaN(elementVal) || elementVal < 0) {  // Check if the value isn't a number and that it isn't negative
         elmnt.style.boxShadow = '0px 0px 3px 1.35px red inset'; // Make the borer color red
@@ -33,16 +45,16 @@ function calculateTime(size, speed) {
 
             switch(sizeDropDown.value) {
                 case 'MB':
-                    multiplier *= 1;
+                    multiplier *= 1;    // MB multiplier
                     break;
                 case 'GB':
-                    multiplier *= 1000;
+                    multiplier *= 1000; // GB Multiplier
                     break;
             }
 
-            time = (size * multiplier) / speed;
-            if(time == 'Infinity') {
-                time = 0;
+            time = (size * multiplier) / speed; // Calculate the time to upload
+            if(time == 'Infinity') {    // If the time comes out as infinity
+                time = 0;   // Set time to 0
             }
             displayTime(time.toFixed(2));  // Format & display the time
         }
