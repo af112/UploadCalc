@@ -34,27 +34,60 @@ function calculateTime(size, speed) {
             let time = 0;
             let multiplier = 0;
 
-            switch(speedDropDown.value) {
-                case 'Mb':
-                    multiplier = 8;  // Mb multiplier
-                    break;
-                case 'MB':
-                    multiplier = 1;  // MB multiplier
-                    break;
-            }
-
             switch(sizeDropDown.value) {
-                case 'MB':
-                    multiplier *= 1;    // MB multiplier
+                case 'KB':  // KB multiplier
+                    switch(speedDropDown.value) {
+                        case 'Kb':
+                            multiplier = 8; // Kb multiplier
+                            break;
+                        case 'KB':
+                            multiplier = 1; // KB multiplier
+                            break;
+                        case 'Mb':
+                            multiplier = 0.008;  // Mb multiplier
+                            break;
+                        case 'MB':
+                            multiplier = 0.001;  // MB multiplier
+                            break;
+                    }
                     break;
-                case 'GB':
-                    multiplier *= 1000; // GB Multiplier
+                case 'MB':  // MB multiplier
+                    switch(speedDropDown.value) {
+                        case 'Kb':
+                            multiplier = 8000; // Kb multiplier
+                            break;
+                        case 'KB':
+                            multiplier = 1000; // KB multiplier
+                            break;
+                        case 'Mb':
+                            multiplier = 8;  // Mb multiplier
+                            break;
+                        case 'MB':
+                            multiplier = 1;  // MB multiplier
+                            break;
+                    }
+                    break;
+                case 'GB':  // GB multiplier
+                    switch(speedDropDown.value) {
+                        case 'Kb':
+                            multiplier = 8000000; // Kb multiplier
+                            break;
+                        case 'KB':
+                            multiplier = 1000000; // KB multiplier
+                            break;
+                        case 'Mb':
+                            multiplier = 8000;  // Mb multiplier
+                            break;
+                        case 'MB':
+                            multiplier = 1000;  // MB multiplier
+                            break;
+                    }
                     break;
             }
 
             time = (size * multiplier) / speed; // Calculate the time to upload
-            if(time == 'Infinity') {    // If the time comes out as infinity
-                time = 0;   // Set time to 0
+            if(time == 'Infinity' || time < 1) {    // If the time comes out as infinity or is less than 1
+                time = 1;   // Set time to 1
             }
             displayTime(time.toFixed(2));  // Format & display the time
         }
@@ -69,7 +102,7 @@ function displayTime(time) {
     let minutes = dateTime.getUTCMinutes(); // Get the minutes
     let seconds = dateTime.getUTCSeconds(); // Get the seconds
     let formattedTime = '';
-
+    
     if(hours > 0) { // If the time is over 1 hour
         let hrs = '';
         let mins = '';
@@ -102,7 +135,7 @@ function displayTime(time) {
             secs = 'secs';
         }
         formattedTime = minutes.toString() + ' ' + mins.toString() + ' ' + seconds.toString() + ' ' + secs.toString();  // Format as mm:ss
-    } else {    // If the time is less than 1 minute
+    } else if(seconds > 0) { // If the time is less than 1 minute but over 1 second
         let secs = '';
 
         if (seconds == 1) {
