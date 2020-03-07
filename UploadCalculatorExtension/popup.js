@@ -2,8 +2,8 @@ let fileSize = document.getElementById('fileSize');
 let uploadSpeed = document.getElementById('uploadSpeed');
 
 function checkElement(element) {
-    let elmnt = document.getElementById(element);
-    let val = elmnt.value;
+    let elmnt = document.getElementById(element);   // Get the HTML element
+    let val = elmnt.value;  // Get the value of the element
 
     if(val.toString().match("[a-zA-Z]+")) { // Check if the newest input is a letter
         val = val.toString().slice(0, -1);  // Remove the last added input (the letter)
@@ -98,12 +98,31 @@ function calculateTime(size, speed) {
 
 function displayTime(time) {
     let dateTime = new Date(time * 1000);   // Create date object from time in milliseconds (seconds * 1000)
+    let days = Math.floor(time / (60 * 60 * 24));   // Calculate the number of days
     let hours = dateTime.getUTCHours(); // Get the hours
     let minutes = dateTime.getUTCMinutes(); // Get the minutes
     let seconds = dateTime.getUTCSeconds(); // Get the seconds
     let formattedTime = '';
     
-    if(hours > 0) { // If the time is over 1 hour
+    console.log(days);
+    
+    if (days >= 1) {    // If the time is over  1 day
+        let dys = '';
+        let hrs = '';
+
+        if (days == 1) {
+            dys = 'day';
+        } else {
+            dys = 'days';
+        }
+
+        if (hours == 1) {
+            hrs = 'hr';
+        } else {
+            hrs = 'hrs';
+        }
+        formattedTime = days.toString() + ' ' + dys.toString() + ' ' + hours.toString() + ' ' + hrs.toString(); // Format as dd:hh
+    } else if(hours >= 1) { // If the time is over 1 hour
         let hrs = '';
         let mins = '';
 
@@ -119,7 +138,7 @@ function displayTime(time) {
             mins = 'mins';
         }
         formattedTime = hours.toString() + ' ' + hrs.toString() + ' ' + minutes.toString() + ' ' + mins.toString(); // Format as hh:mm
-    } else if(minutes > 0) {    // If the time is less than 1 hour but over 1 minute
+    } else if(minutes >= 1) {   // If the time is less than 1 hour but over 1 minute
         let mins = '';
         let secs = '';
 
@@ -135,7 +154,7 @@ function displayTime(time) {
             secs = 'secs';
         }
         formattedTime = minutes.toString() + ' ' + mins.toString() + ' ' + seconds.toString() + ' ' + secs.toString();  // Format as mm:ss
-    } else if(seconds > 0) { // If the time is less than 1 minute but over 1 second
+    } else if(seconds >= 1) {   // If the time is less than 1 minute but over 1 second
         let secs = '';
 
         if (seconds == 1) {
