@@ -1,7 +1,7 @@
 {
 	"name": "Upload Calculator",
 	"version": "1.0",
-	"description": "Upload stuff and calculate how long it'll take!",
+	"description": "Calculate how long it will take to upload something!",
 	"permissions": ["activeTab", "declarativeContent"],
 	"content_security_policy": "script-src 'self' https://ajax.googleapis.com/; object-src 'self'",
 	"background": {
